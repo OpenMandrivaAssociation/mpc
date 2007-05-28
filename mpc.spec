@@ -1,16 +1,13 @@
-%define name 	mpc
-%define version 0.11.2
-%define release	1mdk
-
-Summary:		MPC, command-line client for MPD
-Name:			%name
-Version:		%version
-Release:		%release
-License:		GPL
-Group:			Sound
-URL:			http://www.musicpd.org/
-Source:			%{name}-%{version}.tar.bz2
-BuildRoot:		%{_tmppath}/%{name}-%{version}-buildroot
+Summary:	MPC, command-line client for MPD
+Name:		mpc
+Version:	0.12.1
+Release:	%mkrel 1
+License:	GPL
+Group:		Sound
+URL:		http://www.musicpd.org/
+Source:		http://www.musicpd.org/uploads/files/%{name}-%{version}.tar.bz2
+Requires:	mpd
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 A command line tool to interface MPD. Scriptable !
@@ -22,20 +19,20 @@ Features:
 %setup -q
 
 %build
-%configure
+%configure2_5x
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall
+rm -rf %{buildroot}
+%makeinstall_std
 
-rm -rf $RPM_BUILD_ROOT/%{_docdir}/%{name}/
+rm -rf %{buildroot}%{_docdir}/%{name}/
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc README AUTHORS COPYING ChangeLog doc/*.sh doc/mpc-bashrc
-%{_bindir}/%name
+%{_bindir}/%{name}
 %{_mandir}/man1/*

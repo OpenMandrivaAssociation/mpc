@@ -26,6 +26,9 @@ Features:
 rm -rf %{buildroot}
 %makeinstall_std
 
+mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d
+cp doc/mpc-bashrc %{buildroot}%{_sysconfdir}/bash_completion.d/mpc
+
 rm -rf %{buildroot}%{_docdir}/%{name}/
 
 %clean
@@ -33,6 +36,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc README AUTHORS COPYING ChangeLog doc/*.sh doc/mpc-bashrc
+%doc README AUTHORS COPYING ChangeLog doc/*.sh
+%{_sysconfdir}/bash_completion.d/mpc
 %{_bindir}/%{name}
 %{_mandir}/man1/*

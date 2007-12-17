@@ -7,7 +7,6 @@ Group:		Sound
 URL:		http://www.musicpd.org/
 Source:		http://www.musicpd.org/uploads/files/%{name}-%{version}.tar.bz2
 # Requires:	mpd
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 A command line tool to interface MPD. Scriptable !

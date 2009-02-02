@@ -1,6 +1,6 @@
 Summary:	MPC, command-line client for MPD
 Name:		mpc
-Version:	0.14
+Version:	0.15
 Release:	%mkrel 1
 License:	GPL
 Group:		Sound
@@ -36,7 +36,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc README AUTHORS COPYING ChangeLog doc/*.sh
+%doc README AUTHORS COPYING doc/*.sh
 %{_sysconfdir}/bash_completion.d/mpc
 %{_bindir}/%{name}
 %{_mandir}/man1/*

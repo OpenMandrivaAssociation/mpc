@@ -1,11 +1,11 @@
 Summary:	MPC, command-line client for MPD
 Name:		mpc
-Version:	0.15
+Version:	0.16
 Release:	%mkrel 1
 License:	GPL
 Group:		Sound
 URL:		http://www.musicpd.org/
-Source:		http://www.musicpd.org/uploads/files/%{name}-%{version}.tar.bz2
+Source:		http://downloads.sourceforge.net/musicpd/%{name}-%{version}.tar.bz2
 # Requires:	mpd
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 

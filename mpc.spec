@@ -1,4 +1,4 @@
-Summary:	MPC, command-line client for MPD
+Summary:	, command-line client for MPD
 Name:		mpc
 Version:	0.22
 Release:	1

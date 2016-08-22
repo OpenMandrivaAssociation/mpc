@@ -17,6 +17,7 @@ Features:
 
 %prep
 %setup -q
+sed -i 's!AM_LANGINFO_CODESET!!g' configure.ac
 
 %build
 %configure

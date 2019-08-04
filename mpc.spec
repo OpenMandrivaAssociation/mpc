@@ -7,6 +7,7 @@ Group:		Sound
 URL:		http://www.musicpd.org/
 Source0:	http://www.musicpd.org/download/mpc/0/%{name}-%{version}.tar.xz
 # Requires:	mpd
+BuildRequires:  meson
 BuildRequires:	libmpdclient-devel
 
 %description

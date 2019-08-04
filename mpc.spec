@@ -31,9 +31,6 @@ cp contrib/mpc-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/mpc
 
 rm -rf %{buildroot}%{_docdir}/%{name}/
 
-%check
-%meson_test
-
 %files
 %doc README.rst AUTHORS COPYING
 %{_sysconfdir}/bash_completion.d/mpc

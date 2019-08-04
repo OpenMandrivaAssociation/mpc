@@ -26,12 +26,16 @@ Features:
 
 %meson_install
 
-install -m644 doc/mpc-completion.bash -D %{buildroot}%{_sysconfdir}/bash_completion.d/mpc
+mkdir -p %{buildroot}%{_sysconfdir}/bash_completion.d
+cp contrib/mpc-completion.bash %{buildroot}%{_sysconfdir}/bash_completion.d/mpc
 
 rm -rf %{buildroot}%{_docdir}/%{name}/
 
+%check
+%meson_test
+
 %files
-%doc README AUTHORS doc/*.sh
+%doc README.rst AUTHORS COPYING
 %{_sysconfdir}/bash_completion.d/mpc
 %{_bindir}/%{name}
 %{_mandir}/man1/*

@@ -1,13 +1,13 @@
 Summary:	Command-line client for MPD
 Name:		mpc
-Version:	0.28
+Version:	0.32
 Release:	1
 License:	GPLv2+
 Group:		Sound
 URL:		http://www.musicpd.org/
 Source0:	http://www.musicpd.org/download/mpc/0/%{name}-%{version}.tar.xz
 # Requires:	mpd
-BuildRequires:	libmpdclient-devel >= 2.2
+BuildRequires:	libmpdclient-devel
 
 %description
 A command line tool to interface MPD. Scriptable !
@@ -17,14 +17,12 @@ Features:
 
 %prep
 %setup -q
-sed -i 's!AM_LANGINFO_CODESET!!g' configure.ac
 
 %build
-%configure
-%make
+%meson
+%meson_build
 
-%install
-%makeinstall_std
+%meson_install
 
 install -m644 doc/mpc-completion.bash -D %{buildroot}%{_sysconfdir}/bash_completion.d/mpc
 

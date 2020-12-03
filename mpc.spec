@@ -1,7 +1,7 @@
 Summary:	Command-line client for MPD
 Name:		mpc
 Version:	0.33
-Release:	1
+Release:	2
 License:	GPLv2+
 Group:		Sound
 URL:		http://www.musicpd.org/
@@ -9,7 +9,7 @@ Source0:	http://www.musicpd.org/download/mpc/0/%{name}-%{version}.tar.xz
 # Requires:	mpd
 BuildRequires:  meson
 BuildRequires:	libmpdclient-devel
-BuildRequires:  python3egg(sphinx)
+BuildRequires:  python3dist(sphinx)
 
 %description
 A command line tool to interface MPD. Scriptable !

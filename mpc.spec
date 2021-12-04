@@ -9,6 +9,7 @@ Source0:	http://www.musicpd.org/download/mpc/0/%{name}-%{version}.tar.xz
 # Requires:	mpd
 BuildRequires:  meson
 BuildRequires:	libmpdclient-devel
+BuildRequires:  librsync-devel
 BuildRequires:  python3dist(sphinx)
 
 %description

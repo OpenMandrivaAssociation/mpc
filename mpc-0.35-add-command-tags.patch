@@ -1,0 +1,57 @@
+diff -rupN mpc-0.35.old/doc/index.rst mpc-0.35/doc/index.rst
+--- mpc-0.35.old/doc/index.rst	2025-08-06 13:08:46.404886001 +0200
++++ mpc-0.35/doc/index.rst	2025-08-06 13:10:09.707219232 +0200
+@@ -314,6 +314,8 @@ Database Commands
+ 
+ :command:`stats` - Displays statistics about MPD.
+ 
++:command:`tags` - display all MPD tags known by the mpc client.
++
+ :command:`update [\-\-wait] [<path>]` - Scans for updated files in the
+    music directory.  The optional parameter ``path`` (relative to the
+    music directory) may limit the scope of the update.
+diff -rupN mpc-0.35.old/src/command.c mpc-0.35/src/command.c
+--- mpc-0.35.old/src/command.c	2025-08-06 13:08:24.674053772 +0200
++++ mpc-0.35/src/command.c	2025-08-06 13:12:00.823827213 +0200
+@@ -871,6 +871,19 @@ cmd_load(int argc, char **argv, struct m
+ }
+ 
+ int
++cmd_tags(gcc_unused int argc, gcc_unused char **argv, gcc_unused struct mpd_connection *conn)
++{
++	const char *name = NULL;
++	for (unsigned i = 0; i < MPD_TAG_COUNT; i++) {
++		name = mpd_tag_name(i);
++		if (name != NULL) {
++			printf("%s\n", name);
++		}
++	}
++	return 0;
++}
++
++int
+ cmd_list(int argc, char **argv, struct mpd_connection *conn)
+ {
+ 	const char *name = argv[0];
+diff -rupN mpc-0.35.old/src/command.h mpc-0.35/src/command.h
+--- mpc-0.35.old/src/command.h	2023-12-21 11:37:29.000000000 +0100
++++ mpc-0.35/src/command.h	2025-08-06 13:10:47.328045223 +0200
+@@ -66,4 +66,7 @@ cmd_waitmessage(int argc, char **argv, s
+ int
+ cmd_subscribe(int argc, char **argv, struct mpd_connection *conn);
+ 
++int
++cmd_tags(int argc, char **argv, struct mpd_connection *conn);
++
+ #endif /* COMMAND_H */
+diff -rupN mpc-0.35.old/src/main.c mpc-0.35/src/main.c
+--- mpc-0.35.old/src/main.c	2025-08-06 13:08:24.674329244 +0200
++++ mpc-0.35/src/main.c	2025-08-06 13:12:39.857624128 +0200
+@@ -120,6 +120,7 @@ static const struct command {
+ 	{"stop",             0,  0, 0, cmd_stop,             "", "Stop playback"},
+ 	{"subscribe",        1,  1, 0, cmd_subscribe,        "<channel>", "Subscribe to the specified channel and continuously receive messages." },
+ 	{"tab",              1,  1, 0, cmd_tab,              "<path>", NULL},
++	{"tags",             0,  0, 0, cmd_tags,             "", "Display all MPD tags known by the mpc client" },
+ 	{"toggle",           0,  0, 0, cmd_toggle,           "", "Toggles Play/Pause, plays if stopped"},
+ 	{"toggleoutput",     1, -1, 0, cmd_toggle_output,    "<output # or name> [...]", "Toggle output(s)"},
+ 	{"unmount",          1,  1, 0, cmd_unmount,          "<mount-path>", "Remove a mount." },

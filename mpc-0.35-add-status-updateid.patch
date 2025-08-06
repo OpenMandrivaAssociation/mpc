@@ -1,0 +1,24 @@
+diff -rupN mpc-0.35.old/doc/index.rst mpc-0.35/doc/index.rst
+--- mpc-0.35.old/doc/index.rst	2025-08-06 12:16:21.079668478 +0200
++++ mpc-0.35/doc/index.rst	2025-08-06 12:21:49.825871652 +0200
+@@ -470,6 +470,7 @@ Other Commands
+    %samplerate%       The sample rate in Hz extracted from the current MPD audio format.
+    %bits%             The number of significant bits per sample size extracted from the current MPD audio format.
+    %channels%         The number of channels extracted from the current MPD audio format.
++   %updateid%         The current MPD update ID. 0 if there is no update in progress.
+ 
+    ================== ======================================================
+ 
+diff -rupN mpc-0.35.old/src/status_format.c mpc-0.35/src/status_format.c
+--- mpc-0.35.old/src/status_format.c	2025-08-06 12:17:44.220443401 +0200
++++ mpc-0.35/src/status_format.c	2025-08-06 12:22:43.108986327 +0200
+@@ -142,6 +142,9 @@ status_value(const struct mpd_status *st
+ 		} else {
+ 			return NULL;
+ 		}
++	} else if (strcmp(name, "updateid") == 0) {
++		unsigned update_id = mpd_status_get_update_id(status);
++		snprintf(buffer, sizeof(buffer), "%i", update_id);
+ 	}
+ 	else { return NULL; }
+ 	return buffer;

@@ -1,0 +1,2 @@
+# Bash completion files go in /etc
+addFilter("W: non-conffile-in-etc")
